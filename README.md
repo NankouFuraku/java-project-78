@@ -1,2 +1,1 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/NankouFuraku/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NankouFuraku/java-project-78/actions)
+[![Actions Status](https://github.com/NankouFuraku/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NankouFuraku/java-project-78/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/d71017cc5ca002387520/maintainability)](https://codeclimate.com/github/NankouFuraku/java-project-78/maintainability) <a href="https://codeclimate.com/github/NankouFuraku/java-project-78/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d71017cc5ca002387520/test_coverage" /></a>
