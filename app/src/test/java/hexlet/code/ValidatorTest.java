@@ -1,9 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -112,6 +114,33 @@ public class ValidatorTest {
     @Test
     void testNestedMapSchema() {
         var schema = validator.map();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
 
+        schemas.put("firstName", validator.string().required());
+        schemas.put("lastName", validator.string().required().minLength(5));
+
+        schema.shape(schemas);
+
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "Jon");
+        human1.put("lastName", "Snow");
+        schema.required().size(2);
+        assertFalse(schema.isValid(human1));
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "Jon");
+        human2.put("lastName", "Stark");
+        assertTrue(schema.isValid(human2));
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "John");
+        human3.put("lastName", null);
+        assertFalse(schema.isValid(human3));
+
+        Map<String, String> human4 = new HashMap<>();
+        human4.put("firstName", "John");
+        human4.put("lastName", null);
+        human4.put("title", "Lord");
+        assertFalse(schema.isValid(human4));
     }
 }
