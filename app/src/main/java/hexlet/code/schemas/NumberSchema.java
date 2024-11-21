@@ -1,15 +1,18 @@
 package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema {
-    public void required() {
-        addRule("required", r -> r instanceof Integer);
+public class NumberSchema extends BaseSchema<Integer> {
+    public NumberSchema required() {
+        addRule("required", r -> r != null);
+        return this;
     }
 
-    public void positive() {
-        addRule("positive", r -> r instanceof Integer && ((int) r) > 0);
+    public NumberSchema positive() {
+        addRule("positive", r -> r != null && r > 0);
+        return this;
     }
 
-    public void range(int bottomRange, int topRange) {
-        addRule("range", r -> r instanceof Integer && (int) r >= bottomRange && (int) r <= topRange);
+    public NumberSchema range(int bottomRange, int topRange) {
+        addRule("range", r -> r != null && r >= bottomRange && r <= topRange);
+        return this;
     }
 }

@@ -2,12 +2,14 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchema {
-    public void required() {
-        addRule("required", r -> r instanceof Map<?,?>);
+public class MapSchema extends BaseSchema<Map<?, ?>> {
+    public MapSchema required() {
+        addRule("required", r -> r != null);
+        return this;
     }
 
-    public void size(int size) {
-        addRule("size", r -> ((Map<?, ?>) r).size() == size);
+    public MapSchema size(int size) {
+        addRule("size", r -> r.size() == size);
+        return this;
     }
 }

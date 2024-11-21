@@ -40,6 +40,12 @@ public class ValidatorTest {
     }
 
     @Test
+    public void testStringSchemaChain() {
+        var schema = validator.string().required().minLength(7).contains("ata");
+        assertTrue(schema.isValid("Tatakae"));
+    }
+
+    @Test
     void testNumberSchema() {
         var schema = validator.number();
         assertTrue(schema.isValid(6));
@@ -63,6 +69,15 @@ public class ValidatorTest {
     }
 
     @Test
+    void testNumberSchemaChain() {
+        var schema = validator.number()
+                .required()
+                .positive()
+                .range(3, 9);
+        assertTrue(schema.isValid(5));
+    }
+
+    @Test
     void testMapSchema() {
         var schema = validator.map();
         assertTrue(schema.isValid(null));
@@ -83,5 +98,20 @@ public class ValidatorTest {
 
         data.put("Foobar", "Again");
         assertFalse(schema.isValid(data));
+    }
+
+    @Test
+    void testMapSchemaChain() {
+        var schema = validator.map().required().size(2);
+        var data = new HashMap<String, String>();
+        data.put("Foo", "Bar");
+        data.put("Foos", "Bars");
+        assertTrue(schema.isValid(data));
+    }
+
+    @Test
+    void testNestedMapSchema() {
+        var schema = validator.map();
+
     }
 }

@@ -1,15 +1,18 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema {
-    public void required() {
-        addRule("required", (r -> r instanceof String && !r.equals("")));
+public class StringSchema extends BaseSchema<String> {
+    public StringSchema required() {
+        addRule("required", (r -> r != null && !r.isEmpty()));
+        return this;
     }
 
-    public void minLength(int length) {
-        addRule("minLength", (r -> r instanceof String && ((String) r).length() >= length));
+    public StringSchema minLength(int length) {
+        addRule("minLength", (r -> r != null && r.length() >= length));
+        return this;
     }
 
-    public void contains(String sequence) {
-        addRule("contains", (r -> r instanceof String && ((String) r).contains(sequence)));
+    public StringSchema contains(String sequence) {
+        addRule("contains", (r -> r != null && r.contains(sequence)));
+        return this;
     }
 }
