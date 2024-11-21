@@ -36,4 +36,27 @@ public class ValidatorTest {
         assertTrue(schema.isValid("Tatakae"));
         assertFalse(schema.isValid("FoosBar"));
     }
+
+    @Test
+    void testNumberSchema() {
+        var schema = validator.number();
+        assertTrue(schema.isValid(6));
+        assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(-6));
+
+        schema.required();
+        assertTrue(schema.isValid(6));
+        assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(-6));
+
+        schema.positive();
+        assertTrue(schema.isValid(6));
+        assertFalse(schema.isValid(-6));
+
+        schema.range(3, 9);
+        assertTrue(schema.isValid(3));
+        assertTrue(schema.isValid(9));
+        assertFalse(schema.isValid(1));
+        assertFalse(schema.isValid(11));
+    }
 }
