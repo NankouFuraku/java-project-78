@@ -22,7 +22,7 @@ public class ValidatorTest {
 
     @Test
     void testStringSchema() {
-        var schema = validator.string();
+        StringSchema schema = validator.string();
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(""));
 
@@ -46,13 +46,13 @@ public class ValidatorTest {
 
     @Test
     public void testStringSchemaChain() {
-        var schema = validator.string().required().minLength(7).contains("ata");
+        StringSchema schema = validator.string().required().minLength(7).contains("ata");
         assertTrue(schema.isValid("Tatakae"));
     }
 
     @Test
     void testNumberSchema() {
-        var schema = validator.number();
+        NumberSchema schema = validator.number();
         assertTrue(schema.isValid(6));
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(-6));
@@ -75,7 +75,7 @@ public class ValidatorTest {
 
     @Test
     void testNumberSchemaChain() {
-        var schema = validator.number()
+        NumberSchema schema = validator.number()
                 .required()
                 .positive()
                 .range(3, 9);
@@ -84,7 +84,7 @@ public class ValidatorTest {
 
     @Test
     void testMapSchema() {
-        var schema = validator.map();
+        MapSchema schema = validator.map();
         assertTrue(schema.isValid(null));
 
         schema.required();
@@ -107,7 +107,7 @@ public class ValidatorTest {
 
     @Test
     void testMapSchemaChain() {
-        var schema = validator.map().required().sizeof(2);
+        MapSchema schema = validator.map().required().sizeof(2);
         var data = new HashMap<String, String>();
         data.put("Foo", "Bar");
         data.put("Foos", "Bars");
@@ -116,7 +116,7 @@ public class ValidatorTest {
 
     @Test
     void testNestedMapSchema() {
-        var schema = validator.map();
+        MapSchema schema = validator.map();
         Map<String, BaseSchema<String>> schemas = new HashMap<>();
 
         schemas.put("firstName", validator.string().required());
