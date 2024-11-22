@@ -10,7 +10,7 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public MapSchema size(int size) {
+    public MapSchema sizeof(int size) {
         addRule("size", r -> r.size() == size);
         return this;
     }
@@ -38,6 +38,6 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
                 }
             }
         }
-        return true; //
+        return true;
     }
 }
