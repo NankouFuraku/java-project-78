@@ -38,6 +38,6 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
                 }
             }
         }
-        return true;
+        return true; //
     }
 }
