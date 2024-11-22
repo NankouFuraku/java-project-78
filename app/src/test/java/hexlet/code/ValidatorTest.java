@@ -92,7 +92,7 @@ public class ValidatorTest {
         data.put("Foo", "Bar");
         assertTrue(schema.isValid(data));
 
-        schema.size(2);
+        schema.sizeof(2);
         assertFalse(schema.isValid(data));
 
         data.put("Foos", "Bars");
@@ -104,7 +104,7 @@ public class ValidatorTest {
 
     @Test
     void testMapSchemaChain() {
-        var schema = validator.map().required().size(2);
+        var schema = validator.map().required().sizeof(2);
         var data = new HashMap<String, String>();
         data.put("Foo", "Bar");
         data.put("Foos", "Bars");
@@ -124,7 +124,7 @@ public class ValidatorTest {
         Map<String, String> human1 = new HashMap<>();
         human1.put("firstName", "Jon");
         human1.put("lastName", "Snow");
-        schema.required().size(2);
+        schema.required().sizeof(2);
         assertFalse(schema.isValid(human1));
 
         Map<String, String> human2 = new HashMap<>();
