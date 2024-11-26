@@ -1,3 +1,4 @@
+# Gradle directories
 app/.gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -6,7 +7,7 @@ build/
 **/logs/
 
 ### IntelliJ IDEA ###
-.idea/
+/app/.idea/
 *.iws
 *.iml
 *.ipr
@@ -28,13 +29,16 @@ bin/
 
 ### NetBeans ###
 /nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
 ### VS Code ###
 .vscode/
 
 ### Mac OS ###
 .DS_Store
+
+# Exclude .gradle directory
+/.gradle/
