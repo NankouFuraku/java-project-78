@@ -1,13 +1,13 @@
 package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema<Integer> {
+public final class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema required() {
         addRule("required", r -> r != null);
         return this;
     }
 
     public NumberSchema positive() {
-        addRule("positive", r -> r != null && r > 0);
+        addRule("positive", r -> r == null || r > 0);
         return this;
     }
 

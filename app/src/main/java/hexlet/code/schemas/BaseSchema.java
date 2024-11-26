@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 public class BaseSchema<T> {
     private Map<String, Predicate<T>> schemaRules = new HashMap<>();
 
-    void addRule(String name, Predicate<T> rule) {
+    final void addRule(String name, Predicate<T> rule) {
         schemaRules.put(name, rule);
     }
-    public boolean isValid(T value) {
+    public final boolean isValid(T value) {
         for (var rule : schemaRules.entrySet()) {
             if (!rule.getValue().test(value)) {
                 return false;
