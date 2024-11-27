@@ -14,18 +14,15 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public void shape(Map<String, BaseSchema<String>> schemas) {
-        for (var entry : schemas.entrySet()) {
-            String key = entry.getKey();
-            BaseSchema<String> schema = entry.getValue();
-
-            addRule(key, value -> {
-                if (value.containsKey(key)) {
-                    return schema.isValid((String) value.get(key));
-                }
-
-                return true;
-            });
-        }
+    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
+        addRule(
+                "shape",
+                map -> schemas.entrySet().stream().allMatch(e -> {
+                    var v = map.get(e.getKey());
+                    var schema = e.getValue();
+                    return schema.isValid((T) v);
+                })
+        );
+        return this;
     }
 }
