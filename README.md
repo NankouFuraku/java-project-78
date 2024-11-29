@@ -2,12 +2,19 @@
 
 ### Data Validator
 #### This application is designed to validate various types of data according to different rules you can add to an object of Validator; Doing so you can verify String, Integer and Map, including all it's filling.
+#### To run this application you'll need JDK 21 or higher and Gradle 8.5 or higher.
+#### In the core directory run:
+    gradle build
 
-    Validator validator = new Validator(); // creates an object of Validator
+#### Then start the application with:
+    jshell --class-path build/classes/java/main
+
+#### Create and object of Validator.
+    Validator validator = new Validator();
 
 ### StringSchema
 #### Using string() on the object of Validator creates schema for String validation.
-    StringSchema schema = validator.string() 
+    StringSchema schema = validator.string();
 
 #### This schema has following methods:
 * __required()__ - makes this fields required. Forbids usage of null of empty String.
@@ -19,7 +26,7 @@
 
 ### NumberSchema 
 #### Using number() on the object of Validator creates schema for Integer validation.
-    NumberSchema schema = validator.number() 
+    NumberSchema schema = validator.number(); 
 
 #### This schema has following methods:
 * __required()__ - makes this fields required. Forbids usage of null.
@@ -30,7 +37,7 @@
 
 ### MapSchema
 #### Using map() on the object of Validator creates schema for Map validation.
-    MapSchema schema = validator.map() 
+    MapSchema schema = validator.map();
 
 #### This schema has following methods:
 * __required()__ - makes this fields required. Forbids usage of null.
